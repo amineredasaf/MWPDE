@@ -1,0 +1,8 @@
+
+- using Using curses (for terminal-based UIs) create app that
+- - select the language.
+- - select the folder or List the folders.
+- give variables and run the app
+
+- also think of :
+- - clean, remove, run, ssh, info, status USING THAT ui.

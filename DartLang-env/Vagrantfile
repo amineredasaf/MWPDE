@@ -5,12 +5,14 @@
 BOX = "ubuntu/trusty64"
 BOX_VERSION = "20191107.0.0"
 
+
 # machine config
 MACHINE_NAME = "dartVM"
 MACHINE_CPUS = 1
 MACHINE_MEM = 600
-HOST_FOLDER_PATH = "./codes"
-GUEST_FOLDER_PATH = "/home/vagrant/codes"
+SRC_HOME_HOST = ENV['SRC_HOME'] || "./codes"
+
+SRC_HOME_GUEST = "/home/vagrant/codes"
 
 
 Vagrant.configure("2") do |config|
@@ -18,7 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = BOX
   config.vm.box_version = BOX_VERSION
   config.vm.box_check_update = false
-  config.vm.synced_folder HOST_FOLDER_PATH, GUEST_FOLDER_PATH
+  config.vm.synced_folder SRC_HOME_HOST, SRC_HOME_GUEST
 
   
   config.vm.define MACHINE_NAME do |control|
@@ -31,6 +33,5 @@ Vagrant.configure("2") do |config|
     control.vm.network "forwarded_port", guest: 80, host: 8080
     control.vm.network "public_network"
   end
-
   config.vm.provision :shell, :path => "./scripts/vagrant-bootstrap.sh"
 end

@@ -11,5 +11,5 @@ export PATH="$PATH:/usr/lib/dart/bin"
 
 dart --version
 
-
+# # WITH --no-check-certificate
 # sudo wget --no-check-certificate -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --yes --dearmor -o /usr/share/keyrings/dart.gpg
