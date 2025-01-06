@@ -1,21 +1,33 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# box config
+BOX = "ubuntu/trusty64"
+BOX_VERSION = "20191107.0.0"
+
+# machine config
+MACHINE_NAME = "dartVM"
+MACHINE_CPUS = 1
+MACHINE_MEM = 600
+HOST_FOLDER_PATH = "./codes"
+GUEST_FOLDER_PATH = "/home/vagrant/codes"
+
+
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.box_version = "20191107.0.0"
+  config.vm.box = BOX
+  config.vm.box_version = BOX_VERSION
   config.vm.box_check_update = false
-  config.vm.synced_folder "./codes", "/home/vagrant/codes"
+  config.vm.synced_folder HOST_FOLDER_PATH, GUEST_FOLDER_PATH
 
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = 512
-    vb.cpus = 1
-    #vb.gui = true
-  end
-
-  config.vm.define "DartVM" do |control|
-    control.vm.host_name = "DartVM"
+  
+  config.vm.define MACHINE_NAME do |control|
+    control.vm.provider "virtualbox" do |vb|
+      vb.name = MACHINE_NAME
+      vb.cpus = MACHINE_CPUS
+      vb.memory = MACHINE_MEM
+    end
+    control.vm.host_name = MACHINE_NAME
     control.vm.network "forwarded_port", guest: 80, host: 8080
     control.vm.network "public_network"
   end
