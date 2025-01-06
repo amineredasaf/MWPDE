@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+     
+    
+$script = <<-SCRIPT
+echo I am provisioning...
+sudo apt update -y
+sudo apt install gcc -y
+sudo apt install build-essential -y
+gcc --version
+sudo apt-get install valgrind -y
+sudo apt install git-all -y
+git --version
+sudo apt install zsh -y
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+SCRIPT
+
+  
+
+Vagrant.configure("2") do |config|
+  
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_version = "20191107.0.0"
+  config.vm.define "clang-machine" do |control|
+    control.vm.provision "shell", inline: $script
+    control.vm.synced_folder ".", "/home/vagrant"
+  end
+end

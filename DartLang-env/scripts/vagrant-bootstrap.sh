@@ -1,0 +1,1 @@
+echo "Starting the installation of DartVM"
