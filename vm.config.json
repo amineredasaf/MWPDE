@@ -1,0 +1,21 @@
+{
+    "MACHINE_NAME": "",
+    "MACHINE_CPUS": "",
+    "MACHINE_MEM": "",
+    "SRC_HOME_HOST": "",
+    "SRC_HOME_GUEST": "",
+
+    "BOX_LIST": {
+        "1": {
+            "BOX": "ubuntu/trusty64",
+            "BOX_VERSION": "20191107.0.0"
+        },
+        "2": {
+            "BOX": "xxxxxxx",
+            "BOX_VERSION": "20191107.0.0"
+        }
+    },
+    "SCRIPTS_LIST": [
+        "vagrant-bootstrap.sh"
+    ]
+}
